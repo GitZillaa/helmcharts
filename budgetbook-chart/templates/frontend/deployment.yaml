@@ -5,7 +5,7 @@ metadata:
     app: frontend
   name: frontend
 spec:
-  replicas: {{ .values.frontend.replicas }}
+  replicas: {{ .Values.frontend.replicas }}
   selector:
     matchLabels:
       app: frontend
@@ -15,8 +15,8 @@ spec:
         app: frontend
     spec:
       containers:
-        - image: {{ .values.frontend.image }}
-          imagePullPolicy: {{  .values.frontend.imagePullPolicy }}
+        - image: {{ .Values.frontend.image }}
+          imagePullPolicy: {{  .Values.frontend.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -26,6 +26,6 @@ spec:
               memory: 100Mi          
           name: frontend
           ports:
-            - containerPort: {{ .values.frontend.port}}
+            - containerPort: {{ .Values.frontend.port}}
               protocol: TCP
-      restartPolicy: {{  .values.frontend.restartPolicy }}
+      restartPolicy: {{  .Values.frontend.restartPolicy }}

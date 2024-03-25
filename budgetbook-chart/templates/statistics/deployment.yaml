@@ -5,7 +5,7 @@ metadata:
     app: statistics
   name: statistics
 spec:
-  replicas: {{ .values.statistics.replicas }}
+  replicas: {{ .Values.statistics.replicas }}
   selector:
     matchLabels:
       app: statistics
@@ -15,8 +15,8 @@ spec:
         app: statistics
     spec:
       containers:
-        - image: {{ .values.statistics.image }}
-          imagePullPolicy: {{ .values.statistics.imagePullPolicy }}
+        - image: {{ .Values.statistics.image }}
+          imagePullPolicy: {{ .Values.statistics.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -45,6 +45,6 @@ spec:
                   key: JWT_SECRET
           name: statistics
           ports:
-            - containerPort: {{  .values.statistics.port }}
+            - containerPort: {{  .Values.statistics.port }}
               protocol: TCP
-      restartPolicy: {{ .values.statistics.restartPolicy }}
+      restartPolicy: {{ .Values.statistics.restartPolicy }}

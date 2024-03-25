@@ -5,7 +5,7 @@ metadata:
     app: expense
   name: expense
 spec:
-  replicas: {{ .values.expense.replicas }}
+  replicas: {{ .Values.expenses.replicas }}
   selector:
     matchLabels:
       app: expense
@@ -15,8 +15,8 @@ spec:
         app: expense
     spec:
       containers:
-        - image: {{ .values.expense.image }}
-          imagePullPolicy: {{ .values.expense.imagePullPolicy }}
+        - image: {{ .Values.expenses.image }}
+          imagePullPolicy: {{ .Values.expenses.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -45,6 +45,6 @@ spec:
                   key: JWT_SECRET
           name: expense
           ports:
-            - containerPort: {{  .values.expense.port }}
+            - containerPort: {{  .Values.expenses.port }}
               protocol: TCP
-      restartPolicy: {{ .values.expense.restartPolicy }}
+      restartPolicy: {{ .Values.expenses.restartPolicy }}

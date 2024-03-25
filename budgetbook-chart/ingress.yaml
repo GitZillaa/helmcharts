@@ -1,0 +1,44 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: {{ .Values.ingress.secretName }}
+  ingressClassName: nginx
+  rules:
+    - host: {{ .values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: {{ .values.frontend.port }}
+          - path: /api/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth
+                port:
+                  number: {{ .values.auth.port }}
+          - path: /api/expense
+            pathType: Prefix
+            backend:
+              service:
+                name: expense
+                port:
+                  number: {{ .values.expense.port }}
+          - path: /api/statistics
+            pathType: Prefix
+            backend:
+              service:
+                name: statistics
+                port:
+                  number: {{ .values.statistics.port }}

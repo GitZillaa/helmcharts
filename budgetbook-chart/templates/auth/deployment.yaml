@@ -5,7 +5,7 @@ metadata:
     app: auth
   name: auth
 spec:
-  replicas: {{ .values.auth.replicas }}
+  replicas: {{ .Values.auth.replicas }}
   selector:
     matchLabels:
       app: auth
@@ -15,8 +15,8 @@ spec:
         app: auth
     spec:
       containers:
-        - image: {{  .values.auth.image }}
-          imagePullPolicy: {{ .values.auth.imagePullPolicy }}
+        - image: {{  .Values.auth.image }}
+          imagePullPolicy: {{ .Values.auth.imagePullPolicy }}
           resources:
             requests:
               cpu: 100m
@@ -60,6 +60,6 @@ spec:
 
           name: auth
           ports:
-            - containerPort: {{ .values.auth.port }}
+            - containerPort: {{ .Values.auth.port }}
               protocol: TCP
-      restartPolicy: {{  .values.auth.restartPolicy }}
+      restartPolicy: {{  .Values.auth.restartPolicy }}
