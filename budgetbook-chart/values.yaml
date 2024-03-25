@@ -1,0 +1,24 @@
+auth:
+  image: auth:latest
+  restartPolicy: Always
+  port: 3000
+  imagePullPolicy: Never
+  replicas: 1
+expenses: 
+  image: expenses:latest
+  restartPolicy: Always
+  port: 3000
+  imagePullPolicy: Never
+  replicas: 1
+frontend:
+  image: frontend:latest
+  restartPolicy: Always
+  port: 80
+  imagePullPolicy: Never
+  replicas: 1
+statistics:
+  image: statistics:latest
+  restartPolicy: Always
+  port: 3000
+  imagePullPolicy: Never
+  replicas: 1

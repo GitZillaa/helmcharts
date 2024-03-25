@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: {{ .values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: {{ .values.frontend.image }}
+          imagePullPolicy: {{  .values.frontend.imagePullPolicy }}
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi          
+          name: frontend
+          ports:
+            - containerPort: {{ .values.frontend.port}}
+              protocol: TCP
+      restartPolicy: {{  .values.frontend.restartPolicy }}
